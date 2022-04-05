@@ -40,10 +40,7 @@ EventQueue::EventQueue() { initialized = false; }
 void EventQueue::update()
 {
     MSG msg = {};
-
-    while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-    {
-        // Translate virtual key messages
+    if(GetMessage(&msg,NULL,0,0)!=0){
         TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
